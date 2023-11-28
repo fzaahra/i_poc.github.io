@@ -59,6 +59,9 @@
                 const canvas = document.querySelector('#c');
                 const backgroundColor = 0xf1f1f1;
 
+                 canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
                 // Init the scene
                 scene = new THREE.Scene();
                 scene.background = new THREE.Color(backgroundColor);
@@ -91,6 +94,28 @@
                 });
 
                 var loader = new THREE.GLTFLoader();
+
+                function resizeCanvas() {
+                    const canvas = document.querySelector('#c');
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                    // Also update any camera aspect ratios or other relevant settings
+                    if (camera) {
+                        camera.aspect = window.innerWidth / window.innerHeight;
+                        camera.updateProjectionMatrix();
+                    }
+                    if (renderer) {
+                        renderer.setSize(window.innerWidth, window.innerHeight);
+                    }
+                }
+
+                window.addEventListener('resize', () => {
+                    resizeCanvas();
+                });
+
+                window.addEventListener('orientationchange', () => {
+                    resizeCanvas();
+                });
 
                 loader.load(
                     MODEL_PATH,
@@ -227,6 +252,8 @@
                 }
                 return needResize;
             }
+            
+            
 
             window.addEventListener('click', e => raycast(e));
             window.addEventListener('touchend', e => raycast(e, true));
