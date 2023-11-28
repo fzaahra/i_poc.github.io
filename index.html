@@ -215,8 +215,8 @@
 
             function resizeRendererToDisplaySize(renderer) {
                 const canvas = renderer.domElement;
-                let width = window.innerWidth;
-                let height = window.innerHeight;
+                let width = 500;
+                let height = 500;
                 let canvasPixelWidth = canvas.width / window.devicePixelRatio;
                 let canvasPixelHeight = canvas.height / window.devicePixelRatio;
 
@@ -227,6 +227,7 @@
                 }
                 return needResize;
             }
+
 
             window.addEventListener('click', e => raycast(e));
             window.addEventListener('touchend', e => raycast(e, true));
