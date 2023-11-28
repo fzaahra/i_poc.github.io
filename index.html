@@ -213,13 +213,12 @@
 
             update();
 
-            <!-- change width and height of a canva -->
             function resizeRendererToDisplaySize(renderer) {
                 const canvas = renderer.domElement;
-                let width = 500;
-                let height = 500;
-                let canvasPixelWidth = 300 ;
-                let canvasPixelHeight = 300;
+                let width = window.innerWidth;
+                let height = window.innerHeight;
+                let canvasPixelWidth = canvas.width / window.devicePixelRatio;
+                let canvasPixelHeight = canvas.height / window.devicePixelRatio;
 
                 const needResize =
                     canvasPixelWidth !== width || canvasPixelHeight !== height;
